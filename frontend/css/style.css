@@ -1,0 +1,253 @@
+
+/* =================================
+   SKILLBRIDGE - GLOBAL DESIGN
+================================= */
+
+/* 1. Colour Palette */
+
+:root {
+    --primary: #115E59;
+    --secondary: #0F766E;
+    --accent: #D1FAE5;
+
+    --background: #F7F8F2;
+    --white: #FFFFFF;
+
+    --text-dark: #183B36;
+    --text-muted: #647873;
+
+    --border: #E2EAE5;
+}
+
+
+/* 2. Basic Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+
+/* 3. Navigation Bar */
+
+header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary);
+}
+
+.nav-button {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: var(--secondary);
+}
+
+
+/* 4. Hero Section */
+
+.hero {
+    max-width: 1200px;
+    margin: auto;
+    padding: 110px 40px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.hero-tag {
+    color: var(--secondary);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 54px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    color: var(--primary);
+}
+
+.hero h1 span {
+    color: var(--secondary);
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 0 auto 32px;
+    color: var(--text-muted);
+    font-size: 17px;
+}
+
+.primary-button {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+
+/* 5. How It Works */
+
+.how-it-works {
+    background-color: var(--white);
+    padding: 85px 40px;
+    text-align: center;
+}
+
+.how-it-works h2 {
+    color: var(--primary);
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.how-it-works > p {
+    color: var(--text-muted);
+    margin-bottom: 45px;
+}
+
+.steps {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.step-card {
+    padding: 35px 25px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary);
+}
+
+.step-card h3 {
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    color: var(--text-muted);
+}
+
+
+/* 6. Footer */
+
+footer {
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 25px;
+    font-size: 14px;
+}
+
+
+/* 7. Responsive Design */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 18px 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .hero {
+        padding: 75px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .how-it-works {
+        padding: 60px 20px;
+    }
+
+}

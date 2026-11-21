@@ -1,0 +1,345 @@
+
+
+   /* SKILLBRIDGE RESULTS DASHBOARD */
+
+.results-container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 50px auto;
+    color: #183b35;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-tag {
+    color: #159b76;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+.results-header h1 {
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.results-header p {
+    color: #647b74;
+}
+
+
+   /* SCORE CARD */
+
+
+.score-card {
+    background: #e8f7f1;
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border: 10px solid #159b76;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 25px auto;
+    background: white;
+    overflow: hidden;
+
+    transition: border-color 0.3s ease;
+}
+
+.score-circle span {
+    display: block;
+    width: 100%;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 800;
+    color: #087b5b;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+
+    transition: color 0.3s ease;
+}
+
+   /* SCORE COLOR CONDITIONS */
+
+
+/* 70% OR ABOVE - GREEN */
+
+.score-circle.high-score {
+    border-color: #159b76;
+}
+
+.score-circle.high-score span {
+    color: #087b5b;
+}
+
+/* BELOW 70% - RED */
+
+.score-circle.low-score {
+    border-color: #e53935;
+}
+
+.score-circle.low-score span {
+    color: #e53935;
+}
+
+/* =================================
+   SKILLS GRID
+================================= */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.skills-card {
+    background: white;
+    border: 1px solid #dcece5;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 80, 55, 0.05);
+}
+
+.skills-card h2 {
+    margin-bottom: 10px;
+}
+
+.skills-card p {
+    color: #71857e;
+    margin-bottom: 18px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #e5f6ef;
+    color: #087b5b;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.missing-card .skill-tag {
+    background: #fff0e9;
+    color: #bd633e;
+}
+
+   /* MISSING SKILLS */
+
+
+.missing-skill {
+    background: #fff8f4;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-left: 4px solid #e58c62;
+}
+
+.missing-skill h3 {
+    margin-bottom: 10px;
+}
+
+.missing-skill p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.missing-skill ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.missing-skill li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+
+   /* LEARNING PLAN */
+
+
+.learning-plan-section {
+    margin-top: 55px;
+}
+
+.learning-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.learning-header h2 {
+    font-size: 30px;
+    margin: 12px 0;
+}
+
+.learning-header p {
+    color: #71857e;
+}
+
+#learning-plan {
+    background: #f4fbf7;
+    padding: 25px;
+    border-radius: 18px;
+}
+
+.learning-progress {
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #dcece5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+#progress-fill {
+    height: 100%;
+    background: #159b76;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.learning-days {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.learning-day {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #dcece5;
+    transition: 0.2s;
+}
+
+.learning-day.completed {
+    background: #e5f6ef;
+    border-color: #159b76;
+}
+
+.learning-day label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.learning-checkbox {
+    margin-top: 5px;
+    accent-color: #159b76;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.learning-day strong {
+    color: #159b76;
+    font-size: 12px;
+}
+
+.learning-day h3 {
+    margin: 8px 0;
+}
+
+.learning-day h4 {
+    margin-bottom: 8px;
+    color: #087b5b;
+}
+
+.learning-day p {
+    color: #647b74;
+    line-height: 1.6;
+}
+
+   /* BUTTONS */
+
+
+.results-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.back-button,
+.home-button {
+    padding: 13px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.back-button {
+    background: #159b76;
+    color: white;
+}
+
+.home-button {
+    background: #e5f6ef;
+    color: #087b5b;
+}
+
+.back-button:hover,
+.home-button:hover {
+    transform: translateY(-2px);
+}
+
+
+   /* MOBILE RESPONSIVENESS */
+
+
+@media (max-width: 700px) {
+
+    .results-container {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .results-header h1 {
+        font-size: 28px;
+    }
+
+    .skills-grid,
+    .learning-days {
+        grid-template-columns: 1fr;
+    }
+
+    .score-circle {
+        width: 125px;
+        height: 125px;
+    }
+
+    #learning-plan {
+        padding: 15px;
+    }
+}

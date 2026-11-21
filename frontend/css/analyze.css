@@ -1,0 +1,105 @@
+
+.analyze-container {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 30px;
+}
+
+.analyze-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-tag {
+    color: #0f766e;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.analyze-header h1 {
+    color: #134e4a;
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+.analyze-header p {
+    color: #64748b;
+}
+
+.upload-area,
+.job-description {
+    background: #ffffff;
+    border: 2px dashed #99d5ca;
+    border-radius: 18px;
+    padding: 35px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.upload-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.upload-area h2,
+.job-description h2 {
+    color: #134e4a;
+}
+
+.upload-area p,
+.job-description p {
+    color: #64748b;
+}
+
+.upload-button,
+.analyze-button {
+    display: inline-block;
+    background: #0f766e;
+    color: white;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: 0.2s;
+}
+
+.upload-button:hover,
+.analyze-button:hover {
+    background: #115e59;
+}
+
+#file-info {
+    margin-top: 20px;
+    color: #134e4a;
+}
+
+#job-description textarea,
+.job-description textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #b7d9d2;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    resize: vertical;
+    outline: none;
+}
+
+.job-description textarea:focus {
+    border-color: #0f766e;
+}
+
+.analyze-button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#analysis-status {
+    text-align: center;
+    color: #0f766e;
+    margin-top: 20px;
+}

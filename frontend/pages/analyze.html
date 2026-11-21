@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Resume | SkillBridge</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/analyze.css">
+</head>
+<body>
+<section class="analyze-container">
+
+    <div class="analyze-header">
+        <span class="section-tag">SKILLBRIDGE ANALYZER</span>
+        <h1>Let's Analyze Your Resume</h1>
+        <p>Upload your resume and compare your skills with your dream job.</p>
+    </div>
+
+    <!-- RESUME UPLOAD -->
+    <div class="upload-area">
+
+        <div class="upload-icon">📄</div>
+
+        <h2>Upload Your Resume</h2>
+
+        <p>Upload your resume in PDF format (Maximum 5 MB)</p>
+
+        <input
+            type="file"
+            id="resume"
+            accept=".pdf,application/pdf"
+            hidden
+        >
+
+        <label for="resume" class="upload-button">
+            Choose PDF
+        </label>
+
+        <div id="file-info"></div>
+
+    </div>
+
+    <!-- JOB DESCRIPTION -->
+    <div class="job-description">
+
+        <h2>Job Description</h2>
+
+        <p>Paste the job description of the role you want to apply for.</p>
+
+        <textarea
+            id="job-description"
+            placeholder="Paste the job description here..."
+            rows="8"
+        ></textarea>
+
+        <button id="analyze-btn" class="analyze-button">
+            Analyse My Resume →
+        </button>
+
+    </div>
+
+    <!-- ANALYSIS STATUS -->
+    <div id="analysis-status"></div>
+
+</section>
+
+<script src="../js/analyze.js"></script>
+</body>
+</html>

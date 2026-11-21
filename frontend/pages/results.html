@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results | SkillBridge</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/results.css">
+</head>
+
+<body>
+
+<section class="results-container">
+
+    <header class="results-header">
+        <span class="section-tag">SKILLBRIDGE REPORT</span>
+        <h1>Your Resume Analysis</h1>
+        <p>Here's how your skills compare with your dream job.</p>
+    </header>
+
+    <section class="score-card">
+        <h2>Resume Match Score</h2>
+        <div class="score-circle">
+            <span id="match-percentage">0%</span>
+        </div>
+        <p>Your skill compatibility score</p>
+    </section>
+
+    <!-- EXTRACTED AND REQUIRED SKILLS -->
+    <section class="skills-grid">
+
+        <div class="skills-card">
+            <h2>Resume Skills</h2>
+            <p>Skills extracted from your resume.</p>
+            <div id="resume-skills" class="skill-list"></div>
+        </div>
+
+        <div class="skills-card">
+            <h2>Required Skills</h2>
+            <p>Skills identified in the job description.</p>
+            <div id="required-skills" class="skill-list"></div>
+        </div>
+
+    </section>
+
+    <!-- MATCHED AND MISSING SKILLS -->
+    <section class="skills-grid">
+
+        <div class="skills-card matched-card">
+            <h2>✓ Matched Skills</h2>
+            <p>Skills found in your resume.</p>
+            <div id="matched-skills" class="skill-list"></div>
+        </div>
+
+        <div class="skills-card missing-card">
+            <h2>! Missing Skills</h2>
+            <p>Skills you may need to develop.</p>
+            <div id="missing-skills" class="skill-list"></div>
+        </div>
+
+    </section>
+
+    <!-- PERSONALIZED LEARNING PLAN -->
+    <section class="learning-plan-section">
+
+        <div class="learning-header">
+            <span class="section-tag">YOUR NEXT STEP</span>
+            <h2>Your 14-Day Learning Journey</h2>
+            <p>Build the skills you're missing and become job-ready.</p>
+        </div>
+
+        <div id="learning-plan">
+            <p>Your personalized learning plan will appear here.</p>
+        </div>
+
+    </section>
+
+    <div class="results-actions">
+        <a href="analyze.html" class="back-button">
+            Analyze Another Resume
+        </a>
+
+        <a href="../index.html" class="home-button">
+            Back to Home
+        </a>
+    </div>
+
+</section>
+
+<script src="../js/results.js"></script>
+
+</body>
+</html>
