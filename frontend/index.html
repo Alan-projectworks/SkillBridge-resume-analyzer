@@ -1,108 +1,307 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SkillBridge | Bridge the Skill Gap</title>
-
+    <title>Skillora | Bridge Your Skills. Build Your Future.</title>
+    <meta name="description" content="AI-powered resume analysis, explainable skill gap discovery, and 7-day personalized sprint roadmaps.">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230F766E'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
 </head>
-
 <body>
 
-    <!-- Navigation Bar -->
-    <header>
+    <!-- Sticky Navigation Bar -->
+    <header class="app-header">
         <nav class="navbar">
-
-            <a href="index.html" class="logo">
-                SkillBridge
+            <a href="index.html" class="brand-logo">
+                <span class="brand-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </span>
+                Skillora
+                <span class="brand-badge">2.0</span>
             </a>
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pages/analyze.html">Analyse Resume</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="pages/analyze.html">Analyze Resume</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#preview">Sample Preview</a></li>
+                <li><a href="pages/history.html">History</a></li>
             </ul>
 
-            <a href="pages/analyze.html" class="nav-button">
-                Get Started
-            </a>
-
+            <div class="nav-actions">
+                <a href="pages/analyze.html" class="btn btn-primary btn-sm">
+                    Analyze Resume →
+                </a>
+            </div>
         </nav>
     </header>
 
-
-    <!-- Hero Section -->
     <main>
-
+        <!-- Hero Section -->
         <section class="hero">
-
-            <div class="hero-content">
-
-                <p class="hero-tag">
-                    YOUR CAREER. YOUR NEXT STEP.
-                </p>
+            <div class="hero-inner">
+                <div class="hero-pill">
+                    <span class="tag-pill tag-primary">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        AI CAREER &amp; RESUME INTELLIGENCE
+                    </span>
+                </div>
 
                 <h1>
-                    Bridge the gap between
-                    <span>your skills</span>
-                    and your dream job.
+                    Bridge Your Skills.<br>
+                    <span class="highlight">Build Your Future.</span>
                 </h1>
 
                 <p class="hero-description">
-                    Discover the skills employers are looking for.
-                    Analyse your resume, identify skill gaps and
-                    build a personalised learning path.
+                    Discover the exact skills employers demand. Skillora analyzes your resume against target job descriptions with explainable contextual intelligence, priority gap rankings, and a personalized 7-day action sprint.
                 </p>
 
-                <a href="pages/analyze.html" class="primary-button">
-                    Analyse My Resume →
+                <div class="hero-cta">
+                    <a href="pages/analyze.html" class="btn btn-primary btn-lg">
+                        Analyze My Resume Free →
+                    </a>
+                    <a href="#preview" class="btn btn-outline btn-lg">
+                        Explore Live Preview
+                    </a>
+                </div>
+
+                <div class="hero-trust-bar">
+                    <div class="hero-trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        100% In-Memory Privacy
+                    </div>
+                    <div class="hero-trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Explainable Evidence Citations
+                    </div>
+                    <div class="hero-trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Personalized 7-Day Sprint
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sample Analysis Preview Section -->
+        <section class="preview-showcase" id="preview">
+            <div class="preview-card">
+                <div class="preview-header">
+                    <div>
+                        <div class="preview-badge">SAMPLE INTELLIGENCE PREVIEW</div>
+                        <h3 style="font-size: 22px; margin-top: 8px;">Target Role: Senior Full Stack Engineer</h3>
+                        <p style="font-size: 13px; margin: 0;">Evaluation benchmark based on modern production requirements</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="tag-pill" style="background: #E6F7F2; color: #0F766E; font-weight: 800; font-size: 13px;">
+                            82% MATCH COMPATIBILITY
+                        </span>
+                    </div>
+                </div>
+
+                <div class="preview-metrics">
+                    <div class="preview-stat-card">
+                        <div class="label">Matched Skills</div>
+                        <div class="val" style="color: #0F766E;">8 <span style="font-size: 14px; font-weight: 600; color: #64748B;">/ 11</span></div>
+                    </div>
+                    <div class="preview-stat-card">
+                        <div class="label">Partial Foundations</div>
+                        <div class="val" style="color: #D97706;">2 <span style="font-size: 14px; font-weight: 600; color: #64748B;">transferable</span></div>
+                    </div>
+                    <div class="preview-stat-card">
+                        <div class="label">Primary Gap Area</div>
+                        <div class="val" style="color: #E11D48;">1 <span style="font-size: 14px; font-weight: 600; color: #64748B;">High Priority</span></div>
+                    </div>
+                    <div class="preview-stat-card">
+                        <div class="label">Sprint Timeline</div>
+                        <div class="val" style="color: #2563EB;">7 <span style="font-size: 14px; font-weight: 600; color: #64748B;">days</span></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.04em;">
+                        Extracted Competency Assessment
+                    </div>
+                    <div class="preview-tags-row">
+                        <span class="skill-chip chip-matched">✓ Python (Direct Match)</span>
+                        <span class="skill-chip chip-matched">✓ React.js (Direct Match)</span>
+                        <span class="skill-chip chip-matched">✓ PostgreSQL (Direct Match)</span>
+                        <span class="skill-chip chip-matched">✓ REST APIs (Direct Match)</span>
+                        <span class="skill-chip chip-matched">✓ Docker (Direct Match)</span>
+                        <span class="skill-chip chip-partial">~ Kubernetes (Docker Foundation)</span>
+                        <span class="skill-chip chip-partial">~ TypeScript (JavaScript Foundation)</span>
+                        <span class="skill-chip chip-missing">! FastAPI (High Priority Gap)</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                    <p style="font-size: 13px; margin: 0; color: #64748B;">
+                        AI Synthesis: Candidate brings strong backend architecture and client-side UI fundamentals. Resolving FastAPI and TypeScript elevates projected alignment to 94%.
+                    </p>
+                    <a href="pages/analyze.html" class="btn btn-secondary btn-sm">
+                        Analyze Your Resume Now →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="section-wrapper" id="how-it-works">
+            <div class="section-head">
+                <span class="tag-pill tag-primary">METHODOLOGY</span>
+                <h2>How Skillora Works</h2>
+                <p>Four disciplined steps transforming raw document text into actionable career trajectory intelligence.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-number">01</div>
+                    <h3>Upload &amp; Parse</h3>
+                    <p>Upload your resume in PDF format. Skillora extracts text across multi-column layouts, tables, and unusual section headings entirely in memory.</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">02</div>
+                    <h3>Contextual Extraction</h3>
+                    <p>Our NLP engine identifies hundreds of modern technical competencies, normalizing aliases (e.g., ReactJS = React, ML = Machine Learning).</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">03</div>
+                    <h3>Explainable Match</h3>
+                    <p>We classify competencies into Matched, Partially Supported, and Missing, citing exact sentences and lines from both documents.</p>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">04</div>
+                    <h3>7-Day Action Sprint</h3>
+                    <p>Receive a structured daily roadmap, priority ranking, interactive What-If simulator, and alternative career recommendations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-wrapper" id="features" style="background-color: #FFFFFF; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+            <div class="section-head">
+                <span class="tag-pill tag-primary">INTELLIGENCE PLATFORM</span>
+                <h2>Engineered for Career Precision</h2>
+                <p>Purpose-built features designed to eliminate ambiguity between your resume and hiring expectations.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3>Contextual Evidence Citations</h3>
+                    <p>Every detected competency is linked to the exact sentence where it was proven in your resume, while missing skills cite the job description requirement lines.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3>Skill Priority Matrix</h3>
+                    <p>Missing skills are categorized into High, Medium, and Low importance based on JD emphasis, ensuring you tackle high-impact competencies first.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h3>7-Day Personalized Sprint</h3>
+                    <p>Dynamic day-by-day learning tasks with actionable deliverables and localStorage tracking so your progress is preserved across sessions.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3>What-If Simulator</h3>
+                    <p>Interactively select missing competencies and simulate acquiring them to see real-time projected role coverage before and after.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3>Alternative Career Mapping</h3>
+                    <p>Uncover complementary roles where your verified resume competencies provide immediate high compatibility with zero wasted effort.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <h3>Downloadable Executive PDF</h3>
+                    <p>Export a formatted PDF report with executive summary, category charts, priority matrices, and actionable roadmap.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4>For Job Seekers</h4>
+                    <p>Stop sending resumes into the applicant tracking void. Align your resume with what hiring managers explicitly screen for.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>For Career Changers</h4>
+                    <p>Discover how your existing foundations (e.g. JavaScript, Python, SQL) transfer into in-demand adjacent frameworks like React, FastAPI, or cloud tools.</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>For Senior Developers</h4>
+                    <p>Spot overlooked requirements in specialized senior specifications, optimize your portfolio, and target high-yield career pivots.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="cta-banner">
+            <div class="cta-banner-inner">
+                <h2>Ready to Bridge Your Skill Gap?</h2>
+                <p>Upload your resume, paste a target job description, and get instant career intelligence in less than 5 seconds.</p>
+                <a href="pages/analyze.html" class="btn btn-white btn-lg">
+                    Start Your Resume Analysis →
                 </a>
-
             </div>
-
         </section>
-
-
-        <!-- How It Works -->
-        <section class="how-it-works" id="how-it-works">
-
-            <h2>How SkillBridge Works</h2>
-
-            <p>Three simple steps towards your career goals.</p>
-
-            <div class="steps">
-
-                <div class="step-card">
-                    <h3>01. Upload</h3>
-                    <p>Upload your resume in PDF format.</p>
-                </div>
-
-                <div class="step-card">
-                    <h3>02. Analyse</h3>
-                    <p>Compare your skills against a job description.</p>
-                </div>
-
-                <div class="step-card">
-                    <h3>03. Improve</h3>
-                    <p>Discover missing skills and plan your learning.</p>
-                </div>
-
-            </div>
-
-        </section>
-
     </main>
 
-
     <!-- Footer -->
-    <footer>
-        <p>© 2026 SkillBridge. Built to bridge skill gaps.</p>
+    <footer class="app-footer">
+        <div class="footer-inner">
+            <div class="brand-logo">
+                <span class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </span>
+                Skillora
+            </div>
+
+            <div style="font-size: 14px; color: var(--text-muted); display: flex; gap: 24px;">
+                <a href="index.html">Home</a>
+                <a href="pages/analyze.html">Analyze</a>
+                <li><a href="pages/history.html">History</a></li>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+            </div>
+        </div>
+        <p class="footer-copy">
+            © 2026 Skillora. Built to bridge technical skill gaps with explainable AI career intelligence.
+        </p>
     </footer>
 
 </body>
 </html>
-

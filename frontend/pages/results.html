@@ -1,95 +1,375 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis Results | SkillBridge</title>
-
+    <title>Analysis Results &amp; Intelligence Report | Skillora</title>
+    <meta name="description" content="Detailed resume evaluation, contextual skill gap analysis, 7-day learning sprint, and career recommendations.">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/results.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230F766E'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
 </head>
-
 <body>
 
-<section class="results-container">
+    <!-- Navigation Header -->
+    <header class="app-header">
+        <nav class="navbar">
+            <a href="../index.html" class="brand-logo">
+                <span class="brand-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </span>
+                Skillora
+                <span class="brand-badge">2.0</span>
+            </a>
 
-    <header class="results-header">
-        <span class="section-tag">SKILLBRIDGE REPORT</span>
-        <h1>Your Resume Analysis</h1>
-        <p>Here's how your skills compare with your dream job.</p>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="analyze.html">Analyze Another</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#gap-analysis">Gap Analysis</a></li>
+                <li><a href="#roadmap">7-Day Sprint</a></li>
+                <li><a href="#simulator">What-If</a></li>
+                <li><a href="history.html">History</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button type="button" id="btn-download-pdf" class="btn btn-primary btn-sm">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download PDF Report
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <section class="score-card">
-        <h2>Resume Match Score</h2>
-        <div class="score-circle">
-            <span id="match-percentage">0%</span>
-        </div>
-        <p>Your skill compatibility score</p>
-    </section>
+    <main class="dashboard-container">
+        <!-- Dashboard Topbar Header -->
+        <div class="dashboard-topbar">
+            <div class="dashboard-title-area">
+                <span class="tag-pill tag-primary" style="margin-bottom: 8px;">EXECUTIVE CAREER REPORT</span>
+                <h1>Resume Intelligence Dashboard</h1>
+                <div class="dashboard-meta">
+                    <span class="meta-pill">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        <span id="report-filename">Resume.pdf</span>
+                    </span>
+                    <span class="meta-pill">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span id="report-date">Nov 21, 2026</span>
+                    </span>
+                    <span class="meta-pill">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path></svg>
+                        <span id="report-pagecount">1 page</span>
+                    </span>
+                </div>
+            </div>
 
-    <!-- EXTRACTED AND REQUIRED SKILLS -->
-    <section class="skills-grid">
-
-        <div class="skills-card">
-            <h2>Resume Skills</h2>
-            <p>Skills extracted from your resume.</p>
-            <div id="resume-skills" class="skill-list"></div>
-        </div>
-
-        <div class="skills-card">
-            <h2>Required Skills</h2>
-            <p>Skills identified in the job description.</p>
-            <div id="required-skills" class="skill-list"></div>
-        </div>
-
-    </section>
-
-    <!-- MATCHED AND MISSING SKILLS -->
-    <section class="skills-grid">
-
-        <div class="skills-card matched-card">
-            <h2>✓ Matched Skills</h2>
-            <p>Skills found in your resume.</p>
-            <div id="matched-skills" class="skill-list"></div>
+            <div class="topbar-actions no-print">
+                <a href="analyze.html" class="btn btn-outline btn-sm">
+                    Analyze Another Resume
+                </a>
+            </div>
         </div>
 
-        <div class="skills-card missing-card">
-            <h2>! Missing Skills</h2>
-            <p>Skills you may need to develop.</p>
-            <div id="missing-skills" class="skill-list"></div>
+        <!-- ==================================================================
+             A. OVERVIEW
+             ================================================================== -->
+        <section id="overview" class="overview-grid">
+            <!-- Score Hero Card -->
+            <div class="score-hero-card">
+                <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px;">
+                    Role Compatibility Score
+                </div>
+
+                <div class="score-circle-wrapper">
+                    <svg class="score-svg" viewBox="0 0 160 160">
+                        <circle class="score-bg-ring" cx="80" cy="80" r="70" />
+                        <circle id="score-prog-ring" class="score-prog-ring" cx="80" cy="80" r="70" />
+                    </svg>
+                    <div class="score-text-inner">
+                        <div class="score-value" id="score-value-text">0</div>
+                        <div class="score-unit">%</div>
+                    </div>
+                </div>
+
+                <div id="score-rating-badge" class="score-rating-badge badge-high">
+                    Evaluating...
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">
+                    Weighted algorithmic compatibility based on direct and foundational role skills.
+                </p>
+            </div>
+
+            <!-- Stats & AI Summary Column -->
+            <div class="overview-stats-column">
+                <!-- 4 Metrics Row -->
+                <div class="metrics-cards-row">
+                    <div class="stat-metric-card">
+                        <div class="stat-label">Matched Skills</div>
+                        <div class="stat-number" style="color: var(--primary);" id="stat-matched-count">0</div>
+                        <div class="stat-sub" id="stat-matched-sub">0% of required</div>
+                    </div>
+                    <div class="stat-metric-card">
+                        <div class="stat-label">Missing Skills</div>
+                        <div class="stat-number" style="color: var(--accent-rose);" id="stat-missing-count">0</div>
+                        <div class="stat-sub">Action gaps</div>
+                    </div>
+                    <div class="stat-metric-card">
+                        <div class="stat-label">Partially Matched</div>
+                        <div class="stat-number" style="color: var(--accent-amber);" id="stat-partial-count">0</div>
+                        <div class="stat-sub">Transferable foundations</div>
+                    </div>
+                    <div class="stat-metric-card">
+                        <div class="stat-label">Total Evaluated</div>
+                        <div class="stat-number" id="stat-total-count">0</div>
+                        <div class="stat-sub">Role competencies</div>
+                    </div>
+                </div>
+
+                <!-- AI Summary Card -->
+                <div class="ai-summary-card">
+                    <div class="ai-summary-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        AI Executive Candidate Assessment
+                    </div>
+                    <p class="ai-summary-text" id="ai-summary-content">
+                        Synthesizing evaluation insights...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill Distribution Chart -->
+        <section class="chart-card">
+            <div class="section-title-row">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Skill Distribution by Technical Domain
+                </h2>
+                <span class="tag-pill" style="font-size: 11px; background: #F1F5F9; color: var(--text-muted);">
+                    Resume Coverage vs Role Demand
+                </span>
+            </div>
+            <div class="category-bars-list" id="category-bars-list">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             B & C. SKILL GAP ANALYSIS & EVIDENCE
+             ================================================================== -->
+        <section id="gap-analysis" class="gap-analysis-card">
+            <div class="section-title-row">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Skill Gap &amp; Contextual Evidence Matrix
+                </h2>
+            </div>
+
+            <!-- Evidence Methodology Callout -->
+            <div class="evidence-notice">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <div>
+                    <strong>Note on Evidence Detection:</strong> Skillora analyzes explicit statements and contextual markers within your resume. Missing evidence indicates that the skill was not detected in written document text, not conclusive proof that you lack the underlying capability. Resumes often omit tools used implicitly.
+                </div>
+            </div>
+
+            <!-- Filter Toolbar -->
+            <div class="filter-toolbar no-print">
+                <div class="tab-group">
+                    <button type="button" class="tab-btn active" data-tab="all">All Skills</button>
+                    <button type="button" class="tab-btn" data-tab="matched">Matched (✓)</button>
+                    <button type="button" class="tab-btn" data-tab="partial">Partially Supported (~)</button>
+                    <button type="button" class="tab-btn" data-tab="missing">Missing (!)</button>
+                </div>
+
+                <div class="search-filter-box">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon-pos">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </span>
+                        <input type="text" id="skill-search-input" class="search-input" placeholder="Search skills by name...">
+                    </div>
+
+                    <select id="skill-category-select" class="category-select">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Skills Result Grid -->
+            <div class="skills-result-grid" id="skills-result-grid">
+                <!-- Skill cards dynamically rendered via JS -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             D. SKILL PRIORITIES
+             ================================================================== -->
+        <section id="priorities" class="priorities-card">
+            <div class="section-title-row">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    Top Skill Priorities
+                </h2>
+                <span class="tag-pill" style="font-size: 11px; background: #FFF1F2; color: #E11D48;">
+                    Highest Hiring Impact
+                </span>
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+                Ranked by recurrence and requirement weight in the job description. Addressing these top 3 competencies delivers the highest immediate boost to your candidacy.
+            </p>
+
+            <div class="top3-priorities-grid" id="top3-priorities-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             E. 7-DAY PERSONALIZED LEARNING ROADMAP
+             ================================================================== -->
+        <section id="roadmap" class="roadmap-section-card">
+            <div class="section-title-row">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    7-Day Actionable Learning Sprint
+                </h2>
+                <div class="no-print">
+                    <button type="button" id="btn-reset-roadmap" class="btn btn-outline btn-sm">
+                        Reset Sprint Progress
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress Header with LocalStorage Tracker -->
+            <div class="roadmap-progress-header">
+                <div>
+                    <strong style="font-size: 14px; color: var(--text-main);">Sprint Completion Progress</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);" id="roadmap-progress-text">
+                        0 of 7 days completed (0%)
+                    </div>
+                </div>
+                <div class="roadmap-progress-bar-wrap">
+                    <div class="progress-track-wide">
+                        <div id="roadmap-progress-fill" class="progress-fill-wide" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7-Day Grid -->
+            <div class="roadmap-days-grid" id="roadmap-days-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             F. CAREER RECOMMENDATIONS
+             ================================================================== -->
+        <section id="careers" class="career-section-card">
+            <div class="section-title-row">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                    Alternative Career Trajectories
+                </h2>
+                <span class="tag-pill" style="font-size: 11px; background: #E6F7F2; color: #0F766E;">
+                    Based on Verified Resume Skills
+                </span>
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">
+                Your detected competencies align strongly with multiple technical specializations. Explore complementary paths where you have immediate competitive advantage.
+            </p>
+
+            <div class="career-cards-grid" id="career-cards-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             G. WHAT-IF SIMULATOR
+             ================================================================== -->
+        <section id="simulator" class="simulator-card no-print">
+            <div class="section-title-row">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    What-If Skill Acquisition Simulator
+                </h2>
+            </div>
+            <p class="sim-subtitle">
+                Select missing or partially supported skills below to simulate the mathematical impact of learning them on your overall role compatibility.
+            </p>
+
+            <div class="simulator-grid">
+                <!-- Selectable Skills Checkbox Panel -->
+                <div class="sim-skills-selector">
+                    <div class="sim-selector-title">Select competencies to acquire:</div>
+                    <div class="sim-checkboxes-list" id="sim-checkboxes-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Simulation Output Panel -->
+                <div class="sim-results-panel">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                        Simulated Role Alignment
+                    </div>
+
+                    <div class="sim-score-row">
+                        <div class="sim-score-block">
+                            <div class="label">Current</div>
+                            <div class="value" id="sim-base-score">0%</div>
+                        </div>
+                        <div class="sim-arrow-divider">→</div>
+                        <div class="sim-score-block">
+                            <div class="label">Projected</div>
+                            <div class="value" id="sim-projected-score" style="color: var(--secondary);">0%</div>
+                        </div>
+                    </div>
+
+                    <div id="sim-gain-badge" class="sim-gain-badge">
+                        +0% Projected Gain
+                    </div>
+
+                    <div class="sim-compare-bar-wrap">
+                        <div class="sim-compare-label">
+                            <span>Coverage Projection</span>
+                        </div>
+                        <div class="sim-track">
+                            <div id="sim-fill-projected" class="sim-fill-projected" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="sim-disclaimer">
+                        ⚠️ <strong>Simulation Disclaimer:</strong> All projected scores are algorithmic benchmark estimates based on requirements coverage. They demonstrate potential resume alignment and do not guarantee interview offers or hiring decisions.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Action Buttons -->
+        <div class="results-actions no-print" style="display: flex; justify-content: center; gap: 14px; margin-top: 40px;">
+            <a href="analyze.html" class="btn btn-primary btn-lg">
+                Analyze Another Resume
+            </a>
+            <a href="../index.html" class="btn btn-outline btn-lg">
+                Back to Home
+            </a>
         </div>
+    </main>
 
-    </section>
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p class="footer-copy">
+            © 2026 Skillora. Built to bridge technical skill gaps with explainable AI career intelligence.
+        </p>
+    </footer>
 
-    <!-- PERSONALIZED LEARNING PLAN -->
-    <section class="learning-plan-section">
-
-        <div class="learning-header">
-            <span class="section-tag">YOUR NEXT STEP</span>
-            <h2>Your 14-Day Learning Journey</h2>
-            <p>Build the skills you're missing and become job-ready.</p>
-        </div>
-
-        <div id="learning-plan">
-            <p>Your personalized learning plan will appear here.</p>
-        </div>
-
-    </section>
-
-    <div class="results-actions">
-        <a href="analyze.html" class="back-button">
-            Analyze Another Resume
-        </a>
-
-        <a href="../index.html" class="home-button">
-            Back to Home
-        </a>
-    </div>
-
-</section>
-
-<script src="../js/results.js"></script>
-
+    <script src="../js/results.js"></script>
 </body>
 </html>

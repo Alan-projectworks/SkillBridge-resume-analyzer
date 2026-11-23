@@ -1,175 +1,23 @@
+"""FastAPI backend application for Skillora (SkillBridge 2.0).
 
+High-performance, explainable resume analysis and career intelligence service.
+"""
+
+import sys
+import re
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import fitz
-from skill_matcher import match_skills
+import pymupdf as fitz
+from skill_matcher import match_skills, generate_7day_roadmap
 
 
+app = FastAPI(
+    title="Skillora API",
+    description="Explainable AI-powered resume analysis and career intelligence engine",
+    version="2.0.0"
+)
 
-# DYNAMIC 14-DAY LEARNING PLAN GENERATOR
-
-
-def generate_learning_plan(missing_skills):
-    skill_topics = {
-        "c++": [
-            ("C++ fundamentals", "Practice variables, data types and operators."),
-            ("Conditions", "Write programs using if, else and switch."),
-            ("Loops", "Build multiplication tables using loops."),
-            ("Functions", "Create reusable functions for calculations."),
-            ("Arrays", "Find the largest and smallest array elements."),
-            ("Strings", "Build a string manipulation program."),
-            ("Pointers", "Practice pointers and memory addresses."),
-            ("References", "Understand references and pass-by-reference."),
-            ("Object-oriented programming", "Create classes and objects."),
-            ("Constructors", "Implement constructors and destructors."),
-            ("Inheritance", "Build a simple inheritance example."),
-            ("Polymorphism", "Practice function overriding and overloading."),
-            ("STL", "Practice vectors, maps and sorting."),
-            ("Final project", "Build a student management system in C++.")
-        ],
-        "python": [
-            ("Python fundamentals", "Practice variables, data types and operators."),
-            ("Conditions", "Write programs using conditional statements."),
-            ("Loops", "Solve problems using for and while loops."),
-            ("Functions", "Create reusable Python functions."),
-            ("Lists and tuples", "Build a program to manage student marks."),
-            ("Dictionaries and sets", "Create a contact book."),
-            ("Strings", "Practice string manipulation."),
-            ("File handling", "Read and write text files."),
-            ("Exception handling", "Handle invalid user input."),
-            ("Modules", "Organize code using Python modules."),
-            ("OOP", "Create classes and objects."),
-            ("Libraries", "Explore useful Python libraries."),
-            ("Practice project", "Build a small Python application."),
-            ("Final project", "Create a complete Python mini-project.")
-        ],
-        "sql": [
-            ("SQL fundamentals", "Practice SELECT and DISTINCT."),
-            ("Filtering", "Use WHERE, AND, OR and LIKE."),
-            ("Sorting", "Practice ORDER BY and LIMIT."),
-            ("Aggregate functions", "Use COUNT, SUM, AVG, MIN and MAX."),
-            ("Grouping", "Practice GROUP BY and HAVING."),
-            ("Joins", "Understand INNER JOIN and LEFT JOIN."),
-            ("Subqueries", "Write queries using nested SELECT."),
-            ("Database design", "Create tables with primary keys."),
-            ("Constraints", "Practice foreign keys and constraints."),
-            ("Data modification", "Use INSERT, UPDATE and DELETE."),
-            ("Views", "Create and query database views."),
-            ("Indexes", "Understand database indexing."),
-            ("Query practice", "Solve real-world SQL problems."),
-            ("Final project", "Design and query a small database.")
-        ],
-        "react": [
-            ("React fundamentals", "Understand React and component structure."),
-            ("JSX", "Create reusable JSX components."),
-            ("Props", "Pass data between components."),
-            ("State", "Practice useState."),
-            ("Events", "Handle clicks and form events."),
-            ("Conditional rendering", "Display content based on conditions."),
-            ("Lists", "Render arrays using map."),
-            ("Forms", "Build a controlled form."),
-            ("useEffect", "Understand React effects."),
-            ("API integration", "Fetch data from an API."),
-            ("Routing", "Explore React Router."),
-            ("Component design", "Create reusable UI components."),
-            ("Project practice", "Build a small React application."),
-            ("Final project", "Create a complete React mini-project.")
-        ],
-        "react.js": [
-            ("React fundamentals", "Understand React and component structure."),
-            ("JSX", "Create reusable JSX components."),
-            ("Props", "Pass data between components."),
-            ("State", "Practice useState."),
-            ("Events", "Handle clicks and form events."),
-            ("Conditional rendering", "Display content based on conditions."),
-            ("Lists", "Render arrays using map."),
-            ("Forms", "Build a controlled form."),
-            ("useEffect", "Understand React effects."),
-            ("API integration", "Fetch data from an API."),
-            ("Routing", "Explore React Router."),
-            ("Component design", "Create reusable UI components."),
-            ("Project practice", "Build a small React application."),
-            ("Final project", "Create a complete React mini-project.")
-        ],
-        "javascript": [
-            ("JavaScript fundamentals", "Practice variables and data types."),
-            ("Operators and conditions", "Write conditional programs."),
-            ("Loops", "Solve problems using loops."),
-            ("Functions", "Create reusable functions."),
-            ("Arrays", "Practice array methods."),
-            ("Objects", "Create and manipulate objects."),
-            ("DOM", "Select and update HTML elements."),
-            ("Events", "Handle browser events."),
-            ("ES6", "Explore arrow functions and destructuring."),
-            ("Promises", "Understand asynchronous JavaScript."),
-            ("Async and await", "Fetch data asynchronously."),
-            ("JSON", "Parse and manipulate JSON data."),
-            ("Project practice", "Build an interactive webpage."),
-            ("Final project", "Create a complete JavaScript application.")
-        ]
-    }
-
-    if not missing_skills:
-        return []
-
-    plan = []
-    selected_skills = missing_skills[:3]
-
-    for item in selected_skills:
-        skill = (
-            item if isinstance(item, str)
-            else item.get("skill", "Unknown skill")
-        )
-        normalized = skill.lower().strip()
-        topics = skill_topics.get(normalized)
-
-        if topics is None:
-            topics = [
-                (f"{skill} fundamentals", f"Learn the basic concepts of {skill}."),
-                (f"{skill} core concepts", f"Study the important concepts of {skill}."),
-                (f"{skill} terminology", f"Understand commonly used {skill} terminology."),
-                (f"{skill} practical examples", f"Follow practical {skill} examples."),
-                (f"{skill} beginner exercises", f"Solve beginner exercises using {skill}."),
-                (f"{skill} intermediate concepts", f"Explore intermediate {skill} concepts."),
-                (f"{skill} problem solving", f"Solve problems using {skill}."),
-                (f"{skill} practical applications", f"Explore real-world applications of {skill}."),
-                (f"{skill} advanced practice", f"Practice more advanced {skill} concepts."),
-                (f"{skill} mini project", f"Build a small project using {skill}."),
-                (f"{skill} debugging", f"Identify and fix common {skill} errors."),
-                (f"{skill} best practices", f"Learn best practices for using {skill}."),
-                (f"{skill} revision", f"Revise the important concepts of {skill}."),
-                (f"{skill} final project", f"Complete a practical project using {skill}.")
-            ]
-
-        plan.append({
-            "skill": skill,
-            "topics": topics
-        })
-
-    daily_plan = []
-    for day in range(14):
-        skill_index = min(
-            day * len(plan) // 14,
-            len(plan) - 1
-        )
-        selected = plan[skill_index]
-        topic_index = min(
-            day * len(selected["topics"]) // 14,
-            len(selected["topics"]) - 1
-        )
-        topic, task = selected["topics"][topic_index]
-        daily_plan.append({
-            "day": day + 1,
-            "skill": selected["skill"],
-            "topic": topic,
-            "task": task
-        })
-
-    return daily_plan
-
-
-app = FastAPI(title="SkillBridge API")
-
+# Enable CORS for local web interface & multi-origin integrations
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -179,10 +27,71 @@ app.add_middleware(
 )
 
 
+def extract_text_from_pdf(content: bytes) -> tuple[str, int]:
+    """
+    Extract readable text from PDF bytes with column-order and table awareness.
+    Returns (extracted_text, page_count).
+    """
+    try:
+        pdf_document = fitz.open(stream=content, filetype="pdf")
+    except Exception as exc:
+        raise HTTPException(
+            status_code=400,
+            detail="Could not read or parse this PDF file. The file may be corrupted."
+        ) from exc
+
+    if pdf_document.needs_pass:
+        pdf_document.close()
+        raise HTTPException(
+            status_code=400,
+            detail="Password-protected PDFs are not supported. Please upload an unlocked PDF."
+        )
+
+    page_count = len(pdf_document)
+    if page_count == 0:
+        pdf_document.close()
+        raise HTTPException(
+            status_code=400,
+            detail="The uploaded PDF document contains no pages."
+        )
+
+    all_text_parts = []
+
+    for page_idx in range(page_count):
+        page = pdf_document[page_idx]
+
+        # Use sort=True to preserve natural reading order in multi-column layouts
+        page_text = page.get_text("text", sort=True)
+
+        # Fallback to block extraction if standard extraction is sparse
+        if not page_text or len(page_text.strip()) < 20:
+            blocks = page.get_text("blocks")
+            # Sort blocks primarily by horizontal column threshold, then vertical y
+            # blocks: (x0, y0, x1, y1, text, block_no, block_type)
+            sorted_blocks = sorted(blocks, key=lambda b: (b[0] > (page.rect.width * 0.45), b[1]))
+            page_text = "\n".join(b[4] for b in sorted_blocks if b[4].strip())
+
+        # Clean excessive duplicate whitespace while preserving line structure
+        cleaned = re.sub(r"[ \t]+", " ", page_text)
+        all_text_parts.append(cleaned)
+
+    pdf_document.close()
+    full_text = "\n\n".join(all_text_parts).strip()
+    return full_text, page_count
+
+
+# Backward compatibility wrapper for learning plan
+def generate_learning_plan(missing_skills):
+    return generate_7day_roadmap(missing_skills, [])
+
+
 @app.get("/")
 def home():
+    """Service health & metadata."""
     return {
-        "message": "Welcome to SkillBridge API!",
+        "service": "Skillora API",
+        "version": "2.0.0",
+        "message": "Welcome to Skillora API! AI-powered resume intelligence is running.",
         "status": "running"
     }
 
@@ -192,79 +101,60 @@ async def analyze_resume(
     resume: UploadFile = File(...),
     job_description: str = Form(...)
 ):
-    if not resume.filename.lower().endswith(".pdf"):
+    """
+    Analyze uploaded resume PDF against target job description.
+    Performs skill extraction, normalization, contextual matching, priority ranking,
+    and returns a structured explainable report.
+    """
+    # 1. Validate file extension
+    if not resume.filename or not resume.filename.lower().endswith(".pdf"):
         raise HTTPException(
             status_code=400,
-            detail="Please upload a PDF."
+            detail="Invalid file format. Please upload a PDF document (.pdf)."
         )
 
-    if not job_description.strip():
+    # 2. Validate job description input
+    clean_jd = job_description.strip()
+    if not clean_jd:
         raise HTTPException(
             status_code=400,
-            detail="Job description is empty."
+            detail="Job description cannot be empty. Please provide the target role requirements."
         )
 
-    content = await resume.read(5 * 1024 * 1024 + 1)
-
-    if len(content) > 5 * 1024 * 1024:
+    if len(clean_jd) < 15:
         raise HTTPException(
             status_code=400,
-            detail="Resume exceeds 5 MB."
+            detail="Job description is too short. Please provide a detailed description for accurate matching."
         )
 
+    # 3. Read content with size limit (max 5 MB)
+    max_bytes = 5 * 1024 * 1024
+    content = await resume.read(max_bytes + 1)
+
+    if len(content) > max_bytes:
+        raise HTTPException(
+            status_code=400,
+            detail="Resume exceeds the 5 MB maximum file size limit."
+        )
+
+    # 4. Check PDF magic header
     if not content.startswith(b"%PDF-"):
         raise HTTPException(
             status_code=400,
-            detail="Invalid PDF file."
+            detail="Invalid file content. The uploaded file is not a valid PDF document."
         )
 
-    try:
-        pdf_document = fitz.open(
-            stream=content,
-            filetype="pdf"
-        )
+    # 5. Extract text with layout awareness
+    extracted_text, page_count = extract_text_from_pdf(content)
 
-        if pdf_document.needs_pass:
-            raise HTTPException(
-                status_code=400,
-                detail="Password-protected PDFs are not supported."
-            )
-
-        extracted_text = ""
-
-        for page in pdf_document:
-            extracted_text += page.get_text("text") + "\n"
-
-        page_count = len(pdf_document)
-        pdf_document.close()
-
-    except HTTPException:
-        raise
-
-    except Exception:
+    if not extracted_text or len(extracted_text.strip()) < 30:
         raise HTTPException(
             status_code=400,
-            detail="Could not read this PDF file."
+            detail="No readable text found in this PDF. The document may be a scanned image or photograph. Please upload a PDF with selectable text."
         )
 
-    if not extracted_text.strip():
-        raise HTTPException(
-            status_code=400,
-            detail="No readable text found. This PDF may be scanned."
-        )
-
-    analysis = match_skills(
-        extracted_text,
-        job_description
-    )
-
-    # Generate a personalized learning plan
-    missing_skills = analysis.get(
-        "missing_skill_details",
-        []
-    )
-    learning_plan = generate_learning_plan(missing_skills)
-    analysis["learning_plan"] = learning_plan
+    # 6. Execute Intelligence Matching
+    analysis = match_skills(extracted_text, clean_jd)
 
     return {
         "success": True,
